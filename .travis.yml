@@ -12,12 +12,6 @@ cache:
     - '$HOME/.gradle'
 script: "sudo ./gradlew clean build"
 
-# CI 실행 완료시 메일로 알람
-notifications:
-  email:
-    recipients:
-      - yakkwinjiwon@gmail.com
-
 before_deploy:
   - zip -r practice *
   - mkdir -p deploy
@@ -35,3 +29,21 @@ deploy:
     wait-until-deployed: true
     on:
       branch: main
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY  # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY  # Travis repo settings에 설정된 값
+    bucket: yakkwinjiwon-test-1 # S3 버킷
+    key: practice.zip # 빌드 파일을 압축한 파일
+    bundle_type: zip # 압축 확장자
+    application: test-1 # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+    deployment_group: test-1 # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      branch: main
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - yakkwinjiwon@gmail.com
