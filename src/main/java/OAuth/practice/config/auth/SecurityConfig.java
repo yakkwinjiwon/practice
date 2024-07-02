@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
