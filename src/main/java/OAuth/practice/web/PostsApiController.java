@@ -1,11 +1,14 @@
 package OAuth.practice.web;
 
 import OAuth.practice.service.PostsService;
+import OAuth.practice.web.dto.PostsListResponseDto;
 import OAuth.practice.web.dto.PostsResponseDto;
 import OAuth.practice.web.dto.PostsSaveRequestDto;
 import OAuth.practice.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,5 +35,10 @@ public class PostsApiController {
     public Long delete(@PathVariable Long id) {
         postsService.delete(id);
         return id;
+    }
+
+    @GetMapping("/api/v1/posts")
+    public List<PostsListResponseDto> findAll() {
+        return postsService.findAllDesc();
     }
 }
