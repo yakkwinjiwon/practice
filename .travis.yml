@@ -1,6 +1,8 @@
 language: java
+
 jdk:
   - openjdk21
+
 branches:
   only:
     - main
@@ -10,6 +12,7 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
+
 script: "sudo ./gradlew clean build"
 
 before_deploy:

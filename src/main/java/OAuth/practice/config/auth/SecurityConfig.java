@@ -45,6 +45,8 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://115.41.194.116:3000");
         config.addAllowedOrigin("http://192.168.0.8:3000");
+        config.addAllowedOrigin("http://192.168.0.8:3000");
+        config.addAllowedOrigin("http://13.124.153.161");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
